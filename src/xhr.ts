@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from './types'
 
 export function xhr(config: AxiosRequestConfig) {
-  const { url, method = 'GET', data = null, params = {} } = config
+  const { url, method = 'GET', data = null } = config
   const xhr = new XMLHttpRequest()
   xhr.open(method.toUpperCase(), url, true)
   xhr.onreadystatechange = function() {
