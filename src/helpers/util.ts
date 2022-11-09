@@ -1,6 +1,6 @@
 enum paramsType {
-  Date = 'date',
-  Object = 'object'
+  DATE = 'date',
+  PLAIN_OBJECT = 'object'
 }
 function judgmentType(target: any): string {
   const type = Object.prototype.toString.call(target)
@@ -9,9 +9,9 @@ function judgmentType(target: any): string {
 }
 
 export function isDate(target: any): target is Date {
-  return judgmentType(target) === paramsType.Date
+  return judgmentType(target) === paramsType.DATE
 }
 
-export function isObject(target: any): target is Object {
-  return judgmentType(target) === paramsType.Object
+export function isPlainObject(target: any): target is Object {
+  return judgmentType(target) === paramsType.PLAIN_OBJECT
 }

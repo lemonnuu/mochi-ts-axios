@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from './types'
 
 export function xhr(config: AxiosRequestConfig) {
-  const { url, method = 'GET', data = null } = config
+  const { url, method = 'GET', data = null, headers = {} } = config
   const xhr = new XMLHttpRequest()
   xhr.open(method.toUpperCase(), url, true)
   xhr.onreadystatechange = function() {
@@ -11,5 +11,13 @@ export function xhr(config: AxiosRequestConfig) {
       }
     }
   }
+
+  Object.keys(headers).forEach(name => {
+    if (data == null && name.toLowerCase() === 'content-type') {
+      delete headers[name]
+    } else {
+      xhr.setRequestHeader(name, headers[name])
+    }
+  })
   xhr.send(data)
 }
